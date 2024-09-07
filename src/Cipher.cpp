@@ -124,7 +124,7 @@ void Cipher::WriteEncryptedPasswordsToFile()
 
     for(long unsigned int i = 0; i < userIdEncryptedPasswords.size(); ++i)
     {
-        outputFile << userIdEncryptedPasswords[i][0] << ", " << userIdEncryptedPasswords[i][1] << "\n";
+        outputFile << userIdEncryptedPasswords[i][0] << " " << userIdEncryptedPasswords[i][1] << "\n";
     }
 
     outputFile.close();
