@@ -1,9 +1,19 @@
 #include "Headers/Password.hpp"
+#include "Headers/Cipher.hpp"
 
 int main()
 {
     Password p;
-    p.WritePasswordsToFile();
+    //p.WritePasswordsToFile();
 
-    return 0;
+    Cipher c;
+    //c.ReadFile();
+    //c.VigenereCipher();
+    //std::string s = c.Encrypt("zddewvcsu"); 
+    //std::cout << s << std::endl;
+    //std::cout << "---------------" << std::endl;
+    //c.ReverseAlphabetMap();
+    
+    c.WriteEncryptedPasswordsToFile();
+    return 0;   
 }
