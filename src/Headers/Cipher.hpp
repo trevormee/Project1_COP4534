@@ -1,10 +1,12 @@
-/** @file Cipher.hpp
- *  @brief Contains function declarations for reading in a text file,
- *         encrypting user passwords using the Vigenere Cipher, and 
- *         writing the encrpyted passwords to a new text file
- * 
- * @author Trevor Mee
-*/
+/***************************************************************
+  Student Name: Trevor Mee
+  File Name: Cipher.hpp
+  Project 1
+
+  @brief Contains function declarations for reading in a text file,
+         encrypting user passwords using the Vigenere Cipher, and 
+         writing the encrpyted passwords to a new text file
+***************************************************************/
 
 
 #ifndef CIPHER_HPP
@@ -44,6 +46,9 @@ class Cipher
 
         // Encrpyts the passwords using vigenere cipher logic
         std::string Encrypt(std::string plaintextPassword);
+
+        // Decrypts the passwords
+        std::string Decrypt(std::string encryptedPassword);
         
         // Populates a 2D vector with user id's and encrypted passwords
         void PopulateUserIdEncryptedPasswords();
