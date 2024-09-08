@@ -29,7 +29,7 @@ void Cipher::ReadFile()
 std::unordered_map<char, int> Cipher::CreateAlphabetMap()
 {
     //std::cout << "Alphabet size -> "<< alphabet.size() << std::endl;
-    for(int i = 0; i < alphabet.size(); ++i)
+    for(long unsigned int i = 0; i < alphabet.size(); ++i)
     {
         alphabetMap.insert({alphabet[i], i + 1});
     }
@@ -50,7 +50,7 @@ std::unordered_map<char, int> Cipher::CreateAlphabetMap()
 */
 std::unordered_map<int, char> Cipher::CreateReverseAlphabetMap()
 {
-    for(int i = 0; i < alphabet.size(); ++i)
+    for(long unsigned int i = 0; i < alphabet.size(); ++i)
     {
         reverseAlphabetMap.insert({i + 1, alphabet[i]});
     }
@@ -76,7 +76,7 @@ std::string Cipher::Encrypt(std::string plaintextPassword)
     encryptedPw.clear();
     CreateAlphabetMap();
     CreateReverseAlphabetMap();
-    for(int i = 0; i < plaintextPassword.size(); ++i)
+    for(long unsigned int i = 0; i < plaintextPassword.size(); ++i)
     {
         char plainTextCurrLetter = plaintextPassword[i];
         char keyCurrLetter = KEY[i];
@@ -95,6 +95,16 @@ std::string Cipher::Encrypt(std::string plaintextPassword)
     std::cout << "Encrypted Pw:  " << encryptedPw << std::endl;
     return encryptedPw;
     
+}
+
+/*
+    @brief Decrypts an ecnrypted password
+    @param encrypted password to decode
+    @returns decrypted password
+*/
+std::string Cipher::Decrypt(std::string encryptedPassword)
+{
+    return "";
 }
 
 /*
