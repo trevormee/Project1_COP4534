@@ -71,12 +71,11 @@ std::unordered_map<int, char> Cipher::CreateReverseAlphabetMap()
 */
 std::string Cipher::Encrypt(std::string plaintextPassword)
 {
-    std::cout << "Plaintxt Pw:  " << plaintextPassword << std::endl;
-
+    //std::cout << "Plaintxt Pw:  " << plaintextPassword << std::endl;
     encryptedPw.clear();
     CreateAlphabetMap();
     CreateReverseAlphabetMap();
-    for(long unsigned int i = 0; i < plaintextPassword.size(); ++i)
+    for(long unsigned int i = 0; i < plaintextPassword.size(); i++)
     {
         char plainTextCurrLetter = plaintextPassword[i];
         char keyCurrLetter = KEY[i];
@@ -84,7 +83,11 @@ std::string Cipher::Encrypt(std::string plaintextPassword)
             
             int plainTextLetterToInt = alphabetMap[plainTextCurrLetter];
             int keyToInt = alphabetMap[keyCurrLetter];
-            int encryptedLetterToInt = (plainTextLetterToInt + keyToInt) % alphabet.size();
+            int encryptedLetterToInt = (plainTextLetterToInt + keyToInt + alphabet.size()) % alphabet.size();
+            if(encryptedLetterToInt == 0)
+            {
+                encryptedLetterToInt = 1;
+            }
 
             if(reverseAlphabetMap.find(encryptedLetterToInt) != reverseAlphabetMap.end())
             {
@@ -92,7 +95,12 @@ std::string Cipher::Encrypt(std::string plaintextPassword)
             }
         }
     }
-    std::cout << "Encrypted Pw:  " << encryptedPw << std::endl;
+    if(encryptedPw.size() != 9)
+    {
+        std::cout << "NO SUCCESS" << std::endl;
+    }
+
+    //std::cout << "Encrypted Pw:  " << encryptedPw << std::endl;
     return encryptedPw;
     
 }
@@ -104,7 +112,36 @@ std::string Cipher::Encrypt(std::string plaintextPassword)
 */
 std::string Cipher::Decrypt(std::string encryptedPassword)
 {
-    return "";
+    plaintextPw.clear();
+    CreateAlphabetMap();
+    CreateReverseAlphabetMap();
+    for(long unsigned int i = 0; i < encryptedPassword.size(); i++)
+    {
+        char encryptedPwCurrLetter = encryptedPassword[i];
+        char keyCurrLetter = KEY[i];
+        if(alphabetMap.find(encryptedPwCurrLetter) != alphabetMap.end())
+        {
+            int encryptedLetterToInt = alphabetMap[encryptedPwCurrLetter];
+            int keyToInt = alphabetMap[keyCurrLetter];
+            int plainTextLetterToInt = (encryptedLetterToInt - keyToInt + alphabet.size()) % alphabet.size();
+            if(plainTextLetterToInt == 0)
+            {
+                plainTextLetterToInt = 1;
+            }
+
+            if(reverseAlphabetMap.find(plainTextLetterToInt) != reverseAlphabetMap.end())
+            {
+                plaintextPw += reverseAlphabetMap[plainTextLetterToInt];
+            }
+        }
+    }
+
+    if(plaintextPw.size() != 9)
+    {
+        std::cout << "INVALID NUMBER OF CHARACTERS!" << std::endl;
+    }
+    return plaintextPw;
+
 }
 
 /*

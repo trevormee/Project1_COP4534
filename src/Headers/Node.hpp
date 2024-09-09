@@ -33,6 +33,7 @@ class Node
         // Getter for the password
         std::string getEncryptedPw() { return encryptedPassword; }
 
+        // Getter for the plain text password
         std::string getPlainTextPw() { return plaintextPassword; }
 };
 #endif

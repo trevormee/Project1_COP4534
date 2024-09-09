@@ -2,22 +2,21 @@
 #include "Headers/Cipher.hpp"
 #include "Headers/Node.hpp"
 #include "Headers/HashTable.hpp"
+#include "Headers/Processing.hpp"
 
 int main()
 {
     Password p;
     //p.WritePasswordsToFile();
-
     Cipher c;
-    //c.ReadFile();
-    //c.VigenereCipher();
-    //std::string s = c.Encrypt("zddewvcsu"); 
-    //std::cout << s << std::endl;
-    //std::cout << "---------------" << std::endl;
-    //c.ReverseAlphabetMap();
+    Processing pr;
+    HashTable h(88001);
+    pr.ReadEncryptedData(h);
+    //c.WriteEncryptedPasswordsToFile();
+    //c.Encrypt("mmgwloryo");
+    //c.Decrypt("nkfvtyvnc");
     
-   // c.WriteEncryptedPasswordsToFile();
-
+/*
     int tableSize = 10;
     HashTable ht(tableSize);
 
@@ -37,6 +36,10 @@ int main()
 
     ht.Lookup("user2");
     ht.Lookup("user4"); 
+*/
 
-    return 0;   
+   //Processing pr;
+   //pr.ReadEncryptedData();
+
+   return 0;   
 }

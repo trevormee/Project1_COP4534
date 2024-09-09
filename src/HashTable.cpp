@@ -8,11 +8,29 @@
 HashTable::HashTable(int size)
 {
     this -> size = size;
-    //Table = new Node*[size];
-    for(int i = 0; i < size; i++)
+    //Table = new Node[TABLE_SIZE];
+    for(int i = 0; i < TABLE_SIZE; i++)
     {
         Table[i] = nullptr;
     }
+}
+
+/*
+    @brief
+*/
+HashTable::~HashTable()
+{
+  for(int i = 0; i < TABLE_SIZE; i++)
+  {
+    Node* curr = Table[i];
+    while(curr != nullptr)
+    {
+        Node* temp = curr;
+        curr = curr->next;
+        delete temp;
+    }
+  }
+  //delete[] Table;
 }
 
 /*
@@ -22,6 +40,7 @@ HashTable::HashTable(int size)
 void HashTable::Insert(Node n)
 {
     int index = Hash(n.getUserId());
+    /*
     Node* curr = Table[index];
 
     while(curr != nullptr)
@@ -33,13 +52,20 @@ void HashTable::Insert(Node n)
         }
         curr = curr->next;
     }
-
+    */
     Node* newNode = new Node();
     newNode->userId = n.userId;
     newNode->encryptedPassword = n.encryptedPassword;
     newNode->plaintextPassword = n.plaintextPassword;
     newNode->next = Table[index];
     Table[index] = newNode;
+    /*
+    curr->userId = n.userId;
+    curr->encryptedPassword = n.encryptedPassword;
+    curr->plaintextPassword = n.plaintextPassword;
+    curr->next = Table[index];
+    Table[index] = curr;
+    */
 }
 
 /*
@@ -80,6 +106,6 @@ int HashTable::Hash(std::string key)
         hashValue = hashValue *  PRIME + c;
     }
 
-    return hashValue % size;
+    return hashValue % TABLE_SIZE;
 }
 

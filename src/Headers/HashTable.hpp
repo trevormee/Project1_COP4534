@@ -17,12 +17,16 @@ class HashTable
     private:
         const static int TABLE_SIZE = 88001;
         Node* Table[TABLE_SIZE];
+        //Node* Table;
         int size;
         const int PRIME = 65599;  // High Prime Number to reduce collisions
         
     public:
         // Parameterized constructor
         HashTable(int size);
+
+        // Destructor
+        ~HashTable();
         
         // Insert/Add a new item to hash table
         void Insert(Node n);
