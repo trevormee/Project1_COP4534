@@ -15,15 +15,14 @@ class Node
     public:
         std::string userId;
         std::string encryptedPassword;
-        std::string plaintextPassword;
         Node* next;
 
     //public:
+
         // Default constructor to set private variables to default values
         Node() { 
           this->userId = userId;
           this->encryptedPassword = encryptedPassword;
-          this->plaintextPassword = plaintextPassword;
           next = nullptr;
         }
 
@@ -32,7 +31,5 @@ class Node
 
         // Getter for the password
         std::string getEncryptedPw() { return encryptedPassword; }
-
-        std::string getPlainTextPw() { return plaintextPassword; }
 };
 #endif
