@@ -13,17 +13,18 @@
 
 #include "Cipher.hpp"
 #include "HashTable.hpp"
+#include <iomanip>
 
 class Processing
 {
     private:
-
+      
     public:
         // Reads in encrypteddata.txt
-        void ReadEncryptedData(HashTable& h);
+        //void ReadEncryptedData(HashTable &h);
 
         // Populates hash table with user id's and passwords
-        void PopulateHashTable();
+        void PopulateHashTable(HashTable &h);
 
         // 5 Legal Passwords Check
         void FiveLegal();

@@ -9,15 +9,19 @@ int main()
     Password p;
     //p.WritePasswordsToFile();
     Cipher c;
+    //c.PopulateUserIdEncryptedPasswords();
     Processing pr;
-    HashTable h(88001);
-    pr.ReadEncryptedData(h);
+    HashTable h;
+    //pr.ReadEncryptedData(h);
+   // pr.PopulateHashTable(h);
+    pr.FiveLegal();
+    //pr.FiveLegal();
     //c.WriteEncryptedPasswordsToFile();
     //c.Encrypt("mmgwloryo");
     //c.Decrypt("nkfvtyvnc");
-    
-/*
-    int tableSize = 10;
+    /*
+
+    int tableSize = 44001;
     HashTable ht(tableSize);
 
     Node n1, n2, n3;
@@ -30,16 +34,12 @@ int main()
     
     n3.userId = "user3";
     n3.encryptedPassword = "password3";
-    ht.Insert(n1);
-    ht.Insert(n2);
-    ht.Insert(n3);
+    //ht.Insert(n1);
+    //ht.Insert(n2);
+    //ht.Insert(n3);
 
-    ht.Lookup("user2");
-    ht.Lookup("user4"); 
+    //ht.Lookup("user2");
+    //ht.Lookup("user4"); 
 */
-
-   //Processing pr;
-   //pr.ReadEncryptedData();
-
    return 0;   
 }

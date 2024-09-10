@@ -5,9 +5,9 @@
             for the table and init. each bucket as null
     @param sizeo f table
 */
-HashTable::HashTable(int size)
+HashTable::HashTable()
 {
-    this -> size = size;
+    //this -> size = size;
     //Table = new Node[TABLE_SIZE];
     for(int i = 0; i < TABLE_SIZE; i++)
     {
@@ -17,7 +17,7 @@ HashTable::HashTable(int size)
 
 /*
     @brief
-*/
+
 HashTable::~HashTable()
 {
   for(int i = 0; i < TABLE_SIZE; i++)
@@ -32,6 +32,7 @@ HashTable::~HashTable()
   }
   //delete[] Table;
 }
+*/
 
 /*
     @brief inserts a new entry into the hash table
@@ -40,7 +41,11 @@ HashTable::~HashTable()
 void HashTable::Insert(Node n)
 {
     int index = Hash(n.getUserId());
-    /*
+    if(index < 0)
+        index = std::abs(index);
+
+    //std::cout << "\tINDEX = " << index << std::endl;
+    
     Node* curr = Table[index];
 
     while(curr != nullptr)
@@ -52,20 +57,14 @@ void HashTable::Insert(Node n)
         }
         curr = curr->next;
     }
-    */
+    
     Node* newNode = new Node();
     newNode->userId = n.userId;
     newNode->encryptedPassword = n.encryptedPassword;
-    newNode->plaintextPassword = n.plaintextPassword;
     newNode->next = Table[index];
     Table[index] = newNode;
-    /*
-    curr->userId = n.userId;
-    curr->encryptedPassword = n.encryptedPassword;
-    curr->plaintextPassword = n.plaintextPassword;
-    curr->next = Table[index];
-    Table[index] = curr;
-    */
+    //std::cout << "userid: " << n.userId << " pw: " << n.encryptedPassword << "index = " << index << std::endl;
+    std::cout << "Inserted userId: " << newNode->userId << " at index: " << index << std::endl;
 }
 
 /*
@@ -77,13 +76,15 @@ void HashTable::Insert(Node n)
 int HashTable::Lookup(std::string key)
 {
     int index = Hash(key);
+    if(index < 0)
+        index = std::abs(index);
     Node* curr = Table[index];
-
+    std::cout << "Index of key (" << key << ") at " << index << std::endl;
     while(curr != nullptr)
     {
         if(curr->userId == key)
         {
-            std::cout << "Key found! UserId == " << curr->getUserId() << std::endl;
+            std::cout << "Key found! UserId == " << curr->getUserId() << " Password ==" << curr->getEncryptedPw() << " at index " << index << std::endl;
             return index;
         }
         curr = curr -> next;
@@ -106,6 +107,6 @@ int HashTable::Hash(std::string key)
         hashValue = hashValue *  PRIME + c;
     }
 
-    return hashValue % TABLE_SIZE;
+    return hashValue % TABLE_SIZE ;
 }
 

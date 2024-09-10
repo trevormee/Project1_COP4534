@@ -25,12 +25,13 @@ class Cipher
         const std::string KEY = "microsoft";
         const std::string RAW_DATA_TEXT = "../rawdata.txt";
         std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
-        std::vector<std::vector<std::string>> userIdEncryptedPasswords;
+        //std::vector<std::vector<std::string>> userIdEncryptedPasswords;
         std::string userId;
         std::string plaintextPw;
         std::string encryptedPw = "";
 
     public:
+        std::vector<std::vector<std::string>> userIdEncryptedPasswords;
         std::unordered_map<char, int> alphabetMap;
         std::unordered_map<int, char> reverseAlphabetMap;
         const std::string ENCRYPTED_DATA_TEXT = "../encrypteddata.txt";

@@ -150,11 +150,14 @@ std::string Cipher::Decrypt(std::string encryptedPassword)
 */
 void Cipher::PopulateUserIdEncryptedPasswords()
 {
-    //ReadFile();
+    ReadFile();
 
     for(long unsigned int i = 0; i < userIdEncryptedPasswords.size(); ++i)
     {
         userIdEncryptedPasswords[i][1] = Encrypt(userIdEncryptedPasswords[i][1]);
+        //std::cout << userIdEncryptedPasswords[i][0] << " " << userIdEncryptedPasswords[i][1] <<std::endl;
+        if(userIdEncryptedPasswords[i][0] == "WILLIAMS,")
+            std::cout << "\t\t\t!!!!!!!!!!!!" << std::endl;
     }
 }
 
