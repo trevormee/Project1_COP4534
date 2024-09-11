@@ -24,9 +24,9 @@ class Processing
         void PopulateHashTable(HashTable &h);
 
         // 5 Legal Passwords Check
-        void FiveLegal();
+        void FiveLegal(HashTable &h);
 
         // 5 Illegal Passwords Check 
-        void FiveIllegal();
+        void FiveIllegal(HashTable &h);
 };
 #endif
