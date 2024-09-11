@@ -15,8 +15,10 @@
 int main()
 {
     Processing pr;
-    pr.FiveLegal();
-    pr.FiveIllegal();
+    HashTable h;
+    pr.PopulateHashTable(h);
+    pr.FiveLegal(h);
+    pr.FiveIllegal(h);
     
    return 0;   
 }

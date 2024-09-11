@@ -20,7 +20,7 @@ void Processing::PopulateHashTable(HashTable &h)
     Cipher c;
     c.PopulateUserIdEncryptedPasswords();
 
-    for(int i = 0; i < c.userIdEncryptedPasswords.size(); i++)
+    for(long unsigned int i = 0; i < c.userIdEncryptedPasswords.size(); i++)
     {
         n.userId = c.userIdEncryptedPasswords[i][0];
         n.encryptedPassword = c.userIdEncryptedPasswords[i][1];
@@ -31,17 +31,16 @@ void Processing::PopulateHashTable(HashTable &h)
 /*
     @brief 5 legal password check as per Project 1 requirements
 */
-void Processing::FiveLegal()
+void Processing::FiveLegal(HashTable &h)
 {
-    HashTable h;
-    PopulateHashTable(h);
+
     std::cout << "Legal:" << std::endl;
     std::cout << std::setw(20) << "Userid" << std::setw(20) << "Password(file)" << std::setw(20) << "Password(table/un)" << std::setw(10) << "Result" << std::endl;
     std::ifstream fileRead("../rawdata.txt");
     std::string line;
     int entry = 1;
     std::vector<int> indexes = {1,3,5,7,9};
-    int currIndex = 0;
+    long unsigned int currIndex = 0;
     Cipher c;
     while(std::getline(fileRead, line))
     {   
@@ -92,17 +91,15 @@ void Processing::FiveLegal()
 /*
     @brief 5 illegal passwords check as per Project 1 Requirements
 */
-void Processing::FiveIllegal()
+void Processing::FiveIllegal(HashTable &h)
 {
-    HashTable h;
-    PopulateHashTable(h);
     std::cout << "Illegal:" << std::endl;
     std::cout << std::setw(20) << "Userid" << std::setw(20) << "Password(mod)" << std::setw(20) << "Password(table/un)" << std::setw(10) << "Result" << std::endl;
     std::ifstream fileRead("../rawdata.txt");
     std::string line;
     int entry = 1;
     std::vector<int> indexes = {1,3,5,7,9};
-    int currIndex = 0;
+    long unsigned int currIndex = 0;
     Cipher c;
     while(std::getline(fileRead, line))
     {   
@@ -112,7 +109,9 @@ void Processing::FiveIllegal()
             iss >> userId >> plainTextPw;
 
             encryptedPw = c.Encrypt(plainTextPw);
-            encryptedPw[0] = 'z';
+
+            encryptedPw[0] = '*';   // Modified password
+
             int index = h.Lookup(userId);
 
             if(index != -1){ 
@@ -124,7 +123,6 @@ void Processing::FiveIllegal()
                         encryptedPwDecrypted = c.Decrypt(n->getEncryptedPw());
                         if(n->getEncryptedPw() == encryptedPw)
                         {
-                           //encryptedPwDecrypted = c.Decrypt(n->getEncryptedPw());
                             std::cout << std::setw(20) << userId << std::setw(20) << plainTextPw << std::setw(20) << encryptedPwDecrypted << std::setw(10) << "match" << std::endl;
                         }else{
                             std::cout << std::setw(20) << userId << std::setw(20) << encryptedPw << std::setw(20) << encryptedPwDecrypted << std::setw(10) << "no match" << std::endl;
