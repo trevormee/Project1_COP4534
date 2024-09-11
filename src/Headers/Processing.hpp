@@ -1,6 +1,6 @@
 /***************************************************************
   Student Name: Trevor Mee
-  File Name: Cipher.hpp
+  File Name: Processing.hpp
   Project 1
 
   @brief Contains function declarations for reading in 'encrypteddata.txt';
@@ -20,17 +20,13 @@ class Processing
     private:
       
     public:
-        // Reads in encrypteddata.txt
-        //void ReadEncryptedData(HashTable &h);
-
         // Populates hash table with user id's and passwords
         void PopulateHashTable(HashTable &h);
 
         // 5 Legal Passwords Check
         void FiveLegal();
 
-        // 5 Illegal Passwords Check function
+        // 5 Illegal Passwords Check 
         void FiveIllegal();
-
 };
 #endif
