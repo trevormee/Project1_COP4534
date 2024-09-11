@@ -14,11 +14,7 @@
 
 int main()
 {
-    Password p;
-    Cipher c;
     Processing pr;
-    HashTable h;
-    //pr.PopulateHashTable(h);
     pr.FiveLegal();
     pr.FiveIllegal();
     
