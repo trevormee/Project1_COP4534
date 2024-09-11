@@ -1,10 +1,12 @@
-/** @file Password.cpp
- *  @brief Contains function definitions for reading in a text file,
- *        generating random passwords, and writing the randomly
- *        generated passwords to a new text file
- * 
- * @author Trevor Mee
-*/
+/***************************************************************
+  Student Name: Trevor Mee
+  File Name: Password.cpp
+  Project 1
+
+ @brief Contains function definitions for reading in a text file,
+        generating random passwords, and writing the generated
+        generated passwords to a new text file
+***************************************************************/
 
 #include "Headers/Password.hpp"
 
@@ -56,7 +58,6 @@ std::string Password::GenerateRandomPasswords()
 */
 void Password::PopulateUserIdPasswords()
 {
-
     for(long unsigned int i = 0; i < userIdPasswords.size(); ++i)
     {
         userIdPasswords[i][1] = GenerateRandomPasswords(); 

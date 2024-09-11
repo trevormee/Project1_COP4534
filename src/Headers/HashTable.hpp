@@ -3,7 +3,9 @@
   File Name: HashTable.hpp
   Project 1
 
-  @brief 
+  @brief Contains function declarations for various hash table
+         operations such as creating the table, inserting a new 
+         entry, and looking up an entry.
 ***************************************************************/
 
 #ifndef HASHTABLE_HPP
@@ -17,18 +19,14 @@ class HashTable
 {
     private:
         const static int TABLE_SIZE = 44001;
-        //Node* Table[TABLE_SIZE];
-        //Node* Table;
         int size;
-        const int PRIME = 65599;  // High Prime Number to reduce collisions
+        const int PRIME = 65599;  // High Prime # to reduce collisions
         
     public:
         Node* Table[TABLE_SIZE];
-        // Parameterized constructor
-        HashTable();
 
-        // Destructor
-        //~HashTable();
+        // Default constructor
+        HashTable();
         
         // Insert/Add a new item to hash table
         void Insert(Node n);

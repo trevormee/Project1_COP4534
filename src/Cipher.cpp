@@ -1,8 +1,17 @@
+/***************************************************************
+  Student Name: Trevor Mee
+  File Name: Cipher.cpp
+  Project 1
+
+  @brief Contains function definitions for reading in a text file,
+         encrypting user passwords using the Vigenere Cipher, and 
+         writing the encrpyted passwords to a new text file
+***************************************************************/
 #include "Headers/Cipher.hpp"
 
 /*
     @brief reads in rawdata.txt and pushes the user id
-           and plaintext pw to a vector
+           and plaintext password to a vector
 */
 void Cipher::ReadFile()
 {
@@ -14,9 +23,8 @@ void Cipher::ReadFile()
         std::istringstream iss(line);
         iss >> userId >> plaintextPw;
         userIdEncryptedPasswords.push_back({userId, plaintextPw});
-       //std::cout << "UserId:" << userId << " pw: " << plaintextPw << std::endl;
     }
-    std::cout << std::endl;
+    //std::cout << std::endl;
 
     fileRead.close();
 }
@@ -28,19 +36,12 @@ void Cipher::ReadFile()
 */
 std::unordered_map<char, int> Cipher::CreateAlphabetMap()
 {
-    //std::cout << "Alphabet size -> "<< alphabet.size() << std::endl;
     for(long unsigned int i = 0; i < alphabet.size(); ++i)
     {
         alphabetMap.insert({alphabet[i], i + 1});
     }
-/*
-    for (const auto& pair : alphabetMap)
-    {
-        std::cout << "Key: " << pair.first << ", Value: " << pair.second << std::endl;
-    }
-*/
-    return alphabetMap;
 
+    return alphabetMap;
 }
 
 /*
@@ -54,12 +55,7 @@ std::unordered_map<int, char> Cipher::CreateReverseAlphabetMap()
     {
         reverseAlphabetMap.insert({i + 1, alphabet[i]});
     }
-/*
-    for (const auto& pair : reverseAlphabetMap)
-    {
-        std::cout << "Key: " << pair.first << ", Value: " << pair.second << std::endl;
-    }
-*/
+
     return reverseAlphabetMap;
 }
 
@@ -71,7 +67,6 @@ std::unordered_map<int, char> Cipher::CreateReverseAlphabetMap()
 */
 std::string Cipher::Encrypt(std::string plaintextPassword)
 {
-    //std::cout << "Plaintxt Pw:  " << plaintextPassword << std::endl;
     encryptedPw.clear();
     CreateAlphabetMap();
     CreateReverseAlphabetMap();
@@ -84,6 +79,7 @@ std::string Cipher::Encrypt(std::string plaintextPassword)
             int plainTextLetterToInt = alphabetMap[plainTextCurrLetter];
             int keyToInt = alphabetMap[keyCurrLetter];
             int encryptedLetterToInt = (plainTextLetterToInt + keyToInt + alphabet.size()) % alphabet.size();
+
             if(encryptedLetterToInt == 0)
             {
                 encryptedLetterToInt = 1;
@@ -97,10 +93,9 @@ std::string Cipher::Encrypt(std::string plaintextPassword)
     }
     if(encryptedPw.size() != 9)
     {
-        std::cout << "NO SUCCESS" << std::endl;
+        std::cout << "Encrypted Password length not equal to 9 characters!" << std::endl;
     }
 
-    //std::cout << "Encrypted Pw:  " << encryptedPw << std::endl;
     return encryptedPw;
     
 }
@@ -138,7 +133,7 @@ std::string Cipher::Decrypt(std::string encryptedPassword)
 
     if(plaintextPw.size() != 9)
     {
-        std::cout << "INVALID NUMBER OF CHARACTERS!" << std::endl;
+        std::cout << "Decrypted password length not equal to 9 characters!" << std::endl;
     }
     return plaintextPw;
 
@@ -155,9 +150,6 @@ void Cipher::PopulateUserIdEncryptedPasswords()
     for(long unsigned int i = 0; i < userIdEncryptedPasswords.size(); ++i)
     {
         userIdEncryptedPasswords[i][1] = Encrypt(userIdEncryptedPasswords[i][1]);
-        //std::cout << userIdEncryptedPasswords[i][0] << " " << userIdEncryptedPasswords[i][1] <<std::endl;
-        if(userIdEncryptedPasswords[i][0] == "WILLIAMS,")
-            std::cout << "\t\t\t!!!!!!!!!!!!" << std::endl;
     }
 }
 
@@ -166,7 +158,7 @@ void Cipher::PopulateUserIdEncryptedPasswords()
 */
 void Cipher::WriteEncryptedPasswordsToFile()
 {
-    ReadFile();
+    //ReadFile();
     PopulateUserIdEncryptedPasswords();
 
     std::ofstream outputFile;

@@ -8,7 +8,6 @@
          writing the encrpyted passwords to a new text file
 ***************************************************************/
 
-
 #ifndef CIPHER_HPP
 #define CIPHER_HPP
 
@@ -25,7 +24,6 @@ class Cipher
         const std::string KEY = "microsoft";
         const std::string RAW_DATA_TEXT = "../rawdata.txt";
         std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
-        //std::vector<std::vector<std::string>> userIdEncryptedPasswords;
         std::string userId;
         std::string plaintextPw;
         std::string encryptedPw = "";

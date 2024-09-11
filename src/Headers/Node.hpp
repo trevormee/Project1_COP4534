@@ -17,9 +17,7 @@ class Node
         std::string encryptedPassword;
         Node* next;
 
-    //public:
-
-        // Default constructor to set private variables to default values
+        // Default constructor
         Node() { 
           this->userId = userId;
           this->encryptedPassword = encryptedPassword;

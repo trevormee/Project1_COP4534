@@ -1,38 +1,26 @@
+/***************************************************************
+  Student Name: Trevor Mee
+  File Name: HashTable.cpp
+  Project 1
+
+  @brief Contains function definitions for various hash table
+         operations such as creating the table, inserting a new 
+         entry, and looking up an entry.
+***************************************************************/
 #include "Headers/HashTable.hpp"
 
 /*
-    @brief Parameterized constructor to allocate memory 
+    @brief Default constructor to allocate memory 
             for the table and init. each bucket as null
-    @param sizeo f table
 */
 HashTable::HashTable()
 {
-    //this -> size = size;
-    //Table = new Node[TABLE_SIZE];
     for(int i = 0; i < TABLE_SIZE; i++)
     {
         Table[i] = nullptr;
     }
 }
 
-/*
-    @brief
-
-HashTable::~HashTable()
-{
-  for(int i = 0; i < TABLE_SIZE; i++)
-  {
-    Node* curr = Table[i];
-    while(curr != nullptr)
-    {
-        Node* temp = curr;
-        curr = curr->next;
-        delete temp;
-    }
-  }
-  //delete[] Table;
-}
-*/
 
 /*
     @brief inserts a new entry into the hash table
@@ -43,8 +31,6 @@ void HashTable::Insert(Node n)
     int index = Hash(n.getUserId());
     if(index < 0)
         index = std::abs(index);
-
-    //std::cout << "\tINDEX = " << index << std::endl;
     
     Node* curr = Table[index];
 
@@ -63,15 +49,13 @@ void HashTable::Insert(Node n)
     newNode->encryptedPassword = n.encryptedPassword;
     newNode->next = Table[index];
     Table[index] = newNode;
-    //std::cout << "userid: " << n.userId << " pw: " << n.encryptedPassword << "index = " << index << std::endl;
-    std::cout << "Inserted userId: " << newNode->userId << " at index: " << index << std::endl;
+    //std::cout << "Inserted userId: " << newNode->userId << " at index: " << index << std::endl;
 }
 
 /*
     @brief searches for a password given a users id
     @param user id to search for
     @returns index of user id password pair
-}
 */
 int HashTable::Lookup(std::string key)
 {
@@ -79,17 +63,17 @@ int HashTable::Lookup(std::string key)
     if(index < 0)
         index = std::abs(index);
     Node* curr = Table[index];
-    std::cout << "Index of key (" << key << ") at " << index << std::endl;
+    //std::cout << "Index of key (" << key << ") at " << index << std::endl;
     while(curr != nullptr)
     {
         if(curr->userId == key)
         {
-            std::cout << "Key found! UserId == " << curr->getUserId() << " Password ==" << curr->getEncryptedPw() << " at index " << index << std::endl;
+            //std::cout << "Key found! UserId == " << curr->getUserId() << " Password ==" << curr->getEncryptedPw() << " at index " << index << std::endl;
             return index;
         }
         curr = curr -> next;
     } 
-    std::cout << "key not found :(" << std::endl;
+    std::cout << "User Id not found in table!" << std::endl;
     return -1;
 }
   

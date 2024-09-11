@@ -1,10 +1,12 @@
-/** @file Password.hpp
- *  @brief Contains function declarations for reading in a text file,
- *        generating random passwords, and writing the generated
- *        generated passwords to a new text file
- * 
- * @author Trevor Mee
-*/
+/***************************************************************
+  Student Name: Trevor Mee
+  File Name: Password.hpp
+  Project 1
+
+ @brief Contains function declarations for reading in a text file,
+        generating random passwords, and writing the generated
+        generated passwords to a new text file
+***************************************************************/
 
 #ifndef PASSWORD_HPP
 #define PASSWORD_HPP
@@ -40,6 +42,5 @@ class Password
 
         // Write Passwords to "rawdata.txt"
         void WritePasswordsToFile();
-
 };
 #endif
