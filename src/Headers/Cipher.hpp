@@ -23,6 +23,7 @@ class Cipher
     private:
         const std::string KEY = "microsoft";
         const std::string RAW_DATA_TEXT = "../rawdata.txt";
+        const std::string ENCRYPTED_DATA_TEXT = "../encrypteddata.txt";
         std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
         std::string userId;
         std::string plaintextPw;
@@ -32,7 +33,6 @@ class Cipher
         std::vector<std::vector<std::string>> userIdEncryptedPasswords;
         std::unordered_map<char, int> alphabetMap;
         std::unordered_map<int, char> reverseAlphabetMap;
-        const std::string ENCRYPTED_DATA_TEXT = "../encrypteddata.txt";
 
         // Reads in rawdata.txt
         void ReadFile();

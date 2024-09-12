@@ -30,13 +30,13 @@ void Processing::PopulateHashTable(HashTable &h)
 
 /*
     @brief 5 legal password check as per Project 1 requirements
+    @param reference to HashTable class
 */
 void Processing::FiveLegal(HashTable &h)
 {
-
     std::cout << "Legal:" << std::endl;
     std::cout << std::setw(20) << "Userid" << std::setw(20) << "Password(file)" << std::setw(20) << "Password(table/un)" << std::setw(10) << "Result" << std::endl;
-    std::ifstream fileRead("../rawdata.txt");
+    std::ifstream fileRead(RAW_DATA_TEXT);
     std::string line;
     int entry = 1;
     std::vector<int> indexes = {1,3,5,7,9};
@@ -90,12 +90,13 @@ void Processing::FiveLegal(HashTable &h)
 
 /*
     @brief 5 illegal passwords check as per Project 1 Requirements
+    @param reference to HashTable class
 */
 void Processing::FiveIllegal(HashTable &h)
 {
     std::cout << "Illegal:" << std::endl;
     std::cout << std::setw(20) << "Userid" << std::setw(20) << "Password(mod)" << std::setw(20) << "Password(table/un)" << std::setw(10) << "Result" << std::endl;
-    std::ifstream fileRead("../rawdata.txt");
+    std::ifstream fileRead(RAW_DATA_TEXT);
     std::string line;
     int entry = 1;
     std::vector<int> indexes = {1,3,5,7,9};
@@ -105,12 +106,11 @@ void Processing::FiveIllegal(HashTable &h)
     {   
         if(entry == indexes[currIndex]) {
             std::istringstream iss(line);
-            std::string userId, plainTextPw, encryptedPw, encryptedPwDecrypted;
+            std::string userId, plainTextPw, modPw, encryptedPwDecrypted;
             iss >> userId >> plainTextPw;
 
-            encryptedPw = c.Encrypt(plainTextPw);
-
-            encryptedPw[0] = '*';   // Modified password
+            modPw = c.Encrypt(plainTextPw);
+            modPw[0] = '*';   // Modified password
 
             int index = h.Lookup(userId);
 
@@ -121,11 +121,11 @@ void Processing::FiveIllegal(HashTable &h)
                     if(n->getUserId() == userId)
                     {
                         encryptedPwDecrypted = c.Decrypt(n->getEncryptedPw());
-                        if(n->getEncryptedPw() == encryptedPw)
+                        if(n->getEncryptedPw() == modPw)
                         {
                             std::cout << std::setw(20) << userId << std::setw(20) << plainTextPw << std::setw(20) << encryptedPwDecrypted << std::setw(10) << "match" << std::endl;
                         }else{
-                            std::cout << std::setw(20) << userId << std::setw(20) << encryptedPw << std::setw(20) << encryptedPwDecrypted << std::setw(10) << "no match" << std::endl;
+                            std::cout << std::setw(20) << userId << std::setw(20) << modPw << std::setw(20) << encryptedPwDecrypted << std::setw(10) << "no match" << std::endl;
                         }
                         
                         break;

@@ -3,6 +3,7 @@ CXXFLAGS = -std=c++11 -Wall
 
 OBJS = main.o Password.o Cipher.o HashTable.o Processing.o
 GCH = Headers/Cipher.hpp.gch Headers/Password.hpp.gch Headers/HashTable.hpp.gch Headers/Node.hpp.gch Headers/Processing.hpp.gch
+TXTFILES = ../rawdata.txt ../encrypteddata.txt
 
 proj1 : ${OBJS}
 	 ${CXX} $(CXXFLAGS) -o $@ ${OBJS}
@@ -26,4 +27,4 @@ Processing.o : Processing.cpp Headers/Processing.hpp
 	${CXX} ${CXXFLAGS} -c Processing.cpp 
 
 clean : 
-	rm ${OBJS} ${GCH}
+	rm ${OBJS} ${GCH} ${TXTFILES}

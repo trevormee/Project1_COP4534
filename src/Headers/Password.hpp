@@ -25,10 +25,11 @@ class Password
         std::string userId;
         std::string password;
         std::vector<std::vector<std::string>> userIdPasswords;
-
-    public:
+        const std::string RAW_DATA_TXT = "../rawdata.txt";
         const std::string NAMES_TEXT = "../names.txt";
         const int PASSWORD_LENGTH = 9;
+
+    public:
         static const char alphabet[];
 
         // Read in names.txt

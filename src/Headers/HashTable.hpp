@@ -19,7 +19,6 @@ class HashTable
 {
     private:
         const static int TABLE_SIZE = 44001;
-        int size;
         const int PRIME = 65599;  // High Prime # to reduce collisions
         
     public:
