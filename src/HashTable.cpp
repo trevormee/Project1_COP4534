@@ -29,11 +29,8 @@ HashTable::HashTable()
 void HashTable::Insert(Node n)
 {
     int index = Hash(n.getUserId());
-    if(index < 0)
-        index = std::abs(index);
     
     Node* curr = Table[index];
-
     while(curr != nullptr)
     {
         if(curr->getUserId() == n.getUserId())
@@ -49,7 +46,6 @@ void HashTable::Insert(Node n)
     newNode->encryptedPassword = n.encryptedPassword;
     newNode->next = Table[index];
     Table[index] = newNode;
-    //std::cout << "Inserted userId: " << newNode->userId << " at index: " << index << std::endl;
 }
 
 /*
@@ -60,20 +56,17 @@ void HashTable::Insert(Node n)
 int HashTable::Lookup(std::string key)
 {
     int index = Hash(key);
-    if(index < 0)
-        index = std::abs(index);
+
     Node* curr = Table[index];
-    //std::cout << "Index of key (" << key << ") at " << index << std::endl;
     while(curr != nullptr)
     {
         if(curr->userId == key)
         {
-            //std::cout << "Key found! UserId == " << curr->getUserId() << " Password ==" << curr->getEncryptedPw() << " at index " << index << std::endl;
             return index;
         }
         curr = curr -> next;
     } 
-    std::cout << "User Id not found in table!" << std::endl;
+    std::cout << "User ID: " << key << " not found in table!" << std::endl;
     return -1;
 }
   
@@ -91,6 +84,6 @@ int HashTable::Hash(std::string key)
         hashValue = hashValue *  PRIME + c;
     }
 
-    return hashValue % TABLE_SIZE ;
+    return std::abs(hashValue % TABLE_SIZE) ;
 }
 

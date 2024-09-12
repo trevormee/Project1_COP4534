@@ -18,7 +18,8 @@
 class Processing
 {
     private:
-      
+      const std::string RAW_DATA_TEXT = "../rawdata.txt";
+
     public:
         // Populates hash table with user id's and passwords
         void PopulateHashTable(HashTable &h);

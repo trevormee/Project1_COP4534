@@ -24,8 +24,6 @@ void Cipher::ReadFile()
         iss >> userId >> plaintextPw;
         userIdEncryptedPasswords.push_back({userId, plaintextPw});
     }
-    //std::cout << std::endl;
-
     fileRead.close();
 }
 
@@ -154,11 +152,10 @@ void Cipher::PopulateUserIdEncryptedPasswords()
 }
 
 /*
-    @brief writes user ids and encryped data to "encrypeddata.txt"
+    @brief writes user ids and encrypted data to "encrypeddata.txt"
 */
 void Cipher::WriteEncryptedPasswordsToFile()
 {
-    //ReadFile();
     PopulateUserIdEncryptedPasswords();
 
     std::ofstream outputFile;

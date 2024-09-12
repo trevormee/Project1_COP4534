@@ -41,8 +41,6 @@ void Password::ReadFile()
 std::string Password::GenerateRandomPasswords()
 {
     password.resize(PASSWORD_LENGTH);
-    
-    //std::srand(time(0));
     for(int i = 0; i < PASSWORD_LENGTH; i++)
     {
          int letter = std::rand() % (sizeof(alphabet) - 1);
@@ -74,7 +72,7 @@ void Password::WritePasswordsToFile()
     PopulateUserIdPasswords();
 
     std::ofstream outputFile;
-    outputFile.open("../rawdata.txt");
+    outputFile.open(RAW_DATA_TXT);
   
    for(long unsigned int i = 0; i < userIdPasswords.size(); ++i)
    {
