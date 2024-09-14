@@ -5,7 +5,7 @@ The overall goal of this project was to create a user ID and password storage sy
 
 ## How to Compile
 The project already has a Makefile to compile all the code for you. 
-Simply run the following command from the command line:
+Navigate into the 'src' directory and run the following command from the command line:
 ```bash
 make
 ```
